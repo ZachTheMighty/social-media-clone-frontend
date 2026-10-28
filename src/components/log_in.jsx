@@ -7,6 +7,7 @@ export default function Login() {
     email: "",
     password: "",
   });
+  const [errors, setErrors] = useState("s");
 
   const navigate = useNavigate();
 
@@ -30,7 +31,6 @@ export default function Login() {
     localStorage.setItem("token", data.token);
   };
 
-  const [errors, setErrors] = useState("s");
   return (
     <div className="min-h-screen flex justify-center items-center bg-[#f5f9fa]">
       <div className="w-full sm:w-150 [#fff] px-4 sm:px-16 py-8 rounded-md shadow-[0px_0px_20px_2px_rgba(0,0,0,0.1)]">
