@@ -55,9 +55,6 @@ export default function Input({
                   </li>
                 );
             })}
-          {errors?.status === 401 && errors.path === text && (
-            <li className="text-red-500 font-bold text-xs">{errors.errors}</li>
-          )}
         </ul>
       )}
     </div>
