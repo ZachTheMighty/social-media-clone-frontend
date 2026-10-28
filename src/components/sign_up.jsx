@@ -64,42 +64,43 @@ export default function SignUp() {
           onSubmit={(event) => handleSubmit(event)}
           encType="multipart/form-data"
         >
-          {Object.entries(formData).map((input, index) => {
-            if (input[0] === "photo") return;
-            if (input[0] === "birthDate")
+          {Object.entries(formData)
+            .filter((pair) => pair[0] !== "photo")
+            .map((input, index) => {
+              if (input[0] === "birthDate")
+                return (
+                  <BirthDate
+                    key={index}
+                    formData={formData}
+                    setFormData={setFormData}
+                    errors={errors}
+                  />
+                );
+              if (input[0] === "gender")
+                return (
+                  <div>
+                    Gender
+                    <Select
+                      key={index}
+                      options={["male", "female"]}
+                      initValue="gender"
+                      formData={formData}
+                      setFormData={setFormData}
+                      errors={errors}
+                    />
+                  </div>
+                );
               return (
-                <BirthDate
+                <Input
                   key={index}
+                  text={input[0]}
+                  type={input[0].includes("word") ? "password" : "text"}
                   formData={formData}
                   setFormData={setFormData}
                   errors={errors}
                 />
               );
-            if (input[0] === "gender")
-              return (
-                <div>
-                  Gender
-                  <Select
-                    key={index}
-                    options={["male", "female"]}
-                    initValue="gender"
-                    formData={formData}
-                    setFormData={setFormData}
-                    errors={errors}
-                  />
-                </div>
-              );
-            return (
-              <Input
-                key={index}
-                text={input[0]}
-                type={input[0].includes("word") ? "password" : "text"}
-                formData={formData}
-                setFormData={setFormData}
-                errors={errors}
-              />
-            );
-          })}
+            })}
           <div className="mt-8">
             <label htmlFor="file">
               <div className="mt-4 flex justify-center">
