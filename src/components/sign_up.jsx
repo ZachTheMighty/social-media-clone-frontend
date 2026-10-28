@@ -4,6 +4,7 @@ import Link from "./link.jsx";
 import defaultProfile from "../assets/default_profile.jpg";
 import Select from "./select.jsx";
 import BirthDate from "./birth_date.jsx";
+import LoadingSpinner from "./loading_spinner.jsx";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -16,6 +17,7 @@ export default function SignUp() {
     password: "",
     confirmPassword: "",
   });
+  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState("s");
 
   useEffect(() => {
@@ -28,6 +30,8 @@ export default function SignUp() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    setLoading(true);
 
     const dataToSend = new FormData();
 
@@ -49,6 +53,7 @@ export default function SignUp() {
     });
 
     const data = await response.json();
+    setLoading(false);
     if (!response.ok)
       return setErrors({ errors: data.errors, status: response.status });
     setErrors(null);
@@ -56,7 +61,7 @@ export default function SignUp() {
 
   return (
     <div className="min-h-screen flex justify-center items-center py-8">
-      <div className="w-full sm:w-150 [#fff] px-4 sm:px-16 py-8 rounded-md ">
+      <div className="w-full sm:w-150 [#fff] px-4 sm:px-16 py-8 rounded-md">
         <div className="text-purple-900 font-bold text-3xl text-center my-8">
           Sign Up
         </div>
@@ -127,8 +132,8 @@ export default function SignUp() {
               }}
             />
           </div>
-          <button className="bg-purple-900 text-white w-full py-3 rounded-md font-bold text-lg hover:bg-purple-700 active:bg-purple-900 mb-4 mt-8">
-            Sign Up
+          <button className="flex justify-center items-center h-14 bg-purple-900 text-white w-full py-3 rounded-md font-bold text-lg hover:bg-purple-700 active:bg-purple-900 mb-4 mt-8">
+            {loading ? <LoadingSpinner /> : "Sign Up"}
           </button>
           {errors?.status === 409 ? (
             <div>
