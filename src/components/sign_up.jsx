@@ -78,7 +78,7 @@ export default function SignUp() {
                 );
               if (input[0] === "gender")
                 return (
-                  <div>
+                  <div key={index}>
                     Gender
                     <Select
                       key={index}
