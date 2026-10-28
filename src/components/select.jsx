@@ -1,6 +1,6 @@
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
-import Options from "./options.jsx";
+import Option from "./option.jsx";
 
 export default function Select({
   formData,
@@ -39,7 +39,7 @@ export default function Select({
               {options.map((option, index) => (
                 <li key={index}>
                   {
-                    <Options
+                    <Option
                       initValue={initValue}
                       option={option}
                       formData={formData}
