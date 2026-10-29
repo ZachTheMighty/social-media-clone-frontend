@@ -14,7 +14,11 @@ export function AuthProvider({ children }) {
       .finally(() => setIsLoading(false));
   }, []);
 
-  return <AuthContext value={{ isAuth, isLoading }}>{children}</AuthContext>;
+  return (
+    <AuthContext value={{ isAuth, setIsAuth, isLoading }}>
+      {children}
+    </AuthContext>
+  );
 }
 
 export function useAuth() {

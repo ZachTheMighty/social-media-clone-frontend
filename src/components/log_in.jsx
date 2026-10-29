@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Input from "./input.jsx";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
+import { useAuth } from "../contexts/auth_context.jsx";
 
 export default function Login() {
   const [formData, setFormData] = useState({
@@ -9,7 +10,7 @@ export default function Login() {
   });
   const [errors, setErrors] = useState("s");
 
-  const navigate = useNavigate();
+  const { setIsAuth } = useAuth();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -27,9 +28,8 @@ export default function Login() {
         path: data.path,
         status: response.status,
       });
-    setErrors(null);
     localStorage.setItem("token", data.token);
-    navigate("/", { replace: true });
+    setIsAuth(true);
   };
 
   return (
