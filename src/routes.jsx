@@ -4,6 +4,7 @@ import Login from "./components/log_in.jsx";
 import GuestsRoute from "./components/guests_route.jsx";
 import Dashboard from "./components/dashboard.jsx";
 import ProtectedRoute from "./components/protected_route.jsx";
+import NotFound from "./components/not_found.jsx";
 
 export default [
   {
@@ -32,5 +33,9 @@ export default [
         ],
       },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ];
