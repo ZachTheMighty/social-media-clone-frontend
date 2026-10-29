@@ -137,16 +137,16 @@ export default function SignUp() {
           </button>
           {errors?.status === 409 ? (
             <div>
-              {errors.errors} Would you like to <Link to="/">Sign in</Link>
+              {errors.errors} Would you like to <Link to="/login">Sign in</Link>
               instead?
             </div>
           ) : !errors ? (
             <div>
-              Successfully created account. <Link to="/">Sign in</Link>
+              Successfully created account. <Link to="/login">Sign in</Link>
             </div>
           ) : (
             <div className="text-center">
-              Already have an account? <Link to="/">Sign in</Link>
+              Already have an account? <Link to="/login">Sign in</Link>
             </div>
           )}
         </form>

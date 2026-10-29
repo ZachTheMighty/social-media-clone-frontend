@@ -1,5 +1,10 @@
-import Login from "./components/log_in.jsx";
+import { Outlet } from "react-router";
+import { AuthProvider } from "./contexts/auth_context.jsx";
 
 export default function App() {
-  return <Login />;
+  return (
+    <AuthProvider>
+      <Outlet />
+    </AuthProvider>
+  );
 }
