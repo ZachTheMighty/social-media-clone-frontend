@@ -29,7 +29,7 @@ export default function Login() {
         status: response.status,
       });
     localStorage.setItem("token", data.token);
-    setIsAuth(true);
+    setIsAuth("");
   };
 
   return (

@@ -4,9 +4,8 @@ import { Link } from "react-router";
 import { useTheme } from "../contexts/theme_context.jsx";
 
 export default function Navbar() {
-  const { user, isLoading } = useAuth();
+  const { user } = useAuth();
   const { theme, toggleTheme } = useTheme();
-  if (isLoading) return <div>Loading...</div>;
 
   return (
     <div className="flex justify-between items-center px-4 py-2 border-b border-b-black/20 dark:border-b-white/20">

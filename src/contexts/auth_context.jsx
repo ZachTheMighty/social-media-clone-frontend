@@ -16,10 +16,10 @@ export function AuthProvider({ children }) {
         setUser(data.user);
       })
       .finally(() => setIsLoading(false));
-  }, []);
+  }, [isAuth]);
 
   return (
-    <AuthContext value={{ isAuth, setIsAuth, isLoading, user, setUser }}>
+    <AuthContext value={{ isAuth, setIsAuth, isLoading, user }}>
       {children}
     </AuthContext>
   );
