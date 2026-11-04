@@ -44,7 +44,7 @@ export default function Navbar() {
   );
 }
 
-function NavbarElement({ children, to = "", onClick = "" }) {
+function NavbarElement({ children, to = location, onClick = "" }) {
   return (
     <Link
       to={to}
