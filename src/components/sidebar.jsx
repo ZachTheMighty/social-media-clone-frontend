@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { useAuth } from "../contexts/auth_context";
 import { useSidebar } from "../contexts/sidebar_context";
 import HamburgerMenu from "./hamburger_menu";
+import { motion } from "motion/react";
 
 export default function Sidebar() {
   const { isCollapsed, isTabletOrMobile } = useSidebar();
@@ -50,8 +51,13 @@ export default function Sidebar() {
   ];
 
   return (
-    <div
-      className={`flex flex-col gap-1 w-70 p-4 pr-6 pb-0 border-r border-r-black/20 dark:border-r-white/20 ${isCollapsed ? "absolute -translate-x-full" : "relative translate-x-0"}`}
+    <motion.div
+      layout="position"
+      transition={{
+        duration: 0.3,
+        ease: "easeInOut",
+      }}
+      className={`flex flex-col gap-1 w-70 p-4 pr-6 pb-0 border-r border-r-black/20 dark:border-r-white/20 ${isCollapsed.desktop || isCollapsed.tabletOrMobile ? "absolute h-full -translate-x-full" : !isCollapsed.desktop || !isCollapsed.tabletOrMobile ? "relative translate-x-0" : ""}`}
     >
       {elements.map((element, index) => (
         <SidebarElement key={index} to={element.to} onClick={element.onClick}>
@@ -59,7 +65,7 @@ export default function Sidebar() {
         </SidebarElement>
       ))}
       {!isTabletOrMobile && <HamburgerMenu location="sidebar" />}
-    </div>
+    </motion.div>
   );
 }
 
