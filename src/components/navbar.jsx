@@ -20,36 +20,38 @@ export default function Navbar() {
       </div>
       <div className="flex justify-between items-center gap-2">
         <div className="flex">
-          <div
-            onClick={toggleTheme}
-            className="p-[11px] hover:bg-gray-200 dark:hover:bg-gray-700 active:dark:bg-gray-500  rounded-full"
-          >
+          <NavbarElement onClick={toggleTheme}>
             {theme === "light" ? <Moon size={19} /> : <Sun size={19} />}
-          </div>
-          <Link
-            to="/posts/new"
-            className="p-[11px] hover:bg-gray-200 dark:hover:bg-gray-700 active:dark:bg-gray-500 rounded-full"
-          >
+          </NavbarElement>
+
+          <NavbarElement to="posts/new">
             <SquarePlus size={19} />
-          </Link>
-          <Link
-            to="/notifications"
-            className="p-[11px] hover:bg-gray-200 dark:hover:bg-gray-700 active:dark:bg-gray-500 rounded-full"
-          >
+          </NavbarElement>
+
+          <NavbarElement to="notifications">
             <Bell size={19} />
-          </Link>
+          </NavbarElement>
         </div>
-        <Link
-          to="/profile"
-          className="rounded-full p-1 hover:bg-gray-200 active:dark:bg-gray-500 dark:hover:bg-gray-700"
-        >
+        <NavbarElement to="profile">
           <img
             src={user.picture}
             alt="Profile picture"
             className="w-8 h-8 rounded-full object-cover"
           />
-        </Link>
+        </NavbarElement>
       </div>
     </div>
+  );
+}
+
+function NavbarElement({ children, to = "", onClick = "" }) {
+  return (
+    <Link
+      to={to}
+      onClick={onClick}
+      className={`${to === "profile" ? "p-1" : "p-[11px]"} hover:bg-gray-200 dark:hover:bg-gray-700 active:dark:bg-gray-500 rounded-full`}
+    >
+      {children}
+    </Link>
   );
 }
