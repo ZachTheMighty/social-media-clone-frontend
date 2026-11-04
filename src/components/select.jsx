@@ -20,7 +20,7 @@ export default function Select({
         <div className="flex items-center gap-2">
           <div
             onClick={() => setShowDropdown((prevShow) => !prevShow)}
-            className="flex-1 mb-1 flex justify-between items-center outline outline-black/10 p-4 rounded-md hover:outline-teal-500 focus:outline-2 focus:outline-teal-500"
+            className="flex-1 mb-1 flex justify-between items-center outline outline-black/10 dark:outline-white/10 p-4 rounded-md hover:outline-teal-500 focus:outline-2 focus:outline-teal-500"
           >
             <div className={`${propertyValue === "" ? "text-gray-500" : ""}`}>
               {propertyValue === ""
@@ -34,7 +34,7 @@ export default function Select({
         </div>
 
         {showDropdown && (
-          <div className="z-10 outline outline-gray-200 w-full rounded-md text-sm absolute bg-white max-h-150 overflow-scroll shadow-lg">
+          <div className="z-10 outline outline-gray-200 dark:outline-white/30 w-full rounded-md text-sm absolute bg-white dark:bg-[#0e1113] max-h-150 overflow-scroll shadow-lg">
             <ul className="flex flex-col">
               {options.map((option, index) => (
                 <li key={index}>

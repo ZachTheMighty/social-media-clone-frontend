@@ -35,7 +35,7 @@ export default function Login() {
   return (
     <div className="min-h-screen flex justify-center items-center">
       <div className="w-full sm:w-150 px-4 sm:px-16 py-8 rounded-md ">
-        <div className="text-purple-900 font-bold text-3xl text-center my-8">
+        <div className="text-purple-900 dark:text-white font-bold text-3xl text-center my-8">
           Login
         </div>
         <form onSubmit={(event) => handleSubmit(event)}>

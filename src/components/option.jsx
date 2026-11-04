@@ -21,7 +21,7 @@ export default function Option({
             });
         setShowDropdown(false);
       }}
-      className={`${isChecked ? "bg-gray-200" : "hover:bg-gray-100"} flex justify-between items-center px-4 py-3 cursor-pointer`}
+      className={`${isChecked ? "bg-gray-200 dark:bg-gray-700/50" : "hover:bg-gray-100 hover:dark:bg-white/10"} flex justify-between items-center px-4 py-3 cursor-pointer`}
     >
       <div>
         {isFinite(option) ? option : option[0].toUpperCase() + option.slice(1)}

@@ -42,7 +42,7 @@ export default function Input({
           setFormData({ ...formData, [text]: event.target.value })
         }
         disabled={disabled}
-        className={`outline outline-black/10 p-4 rounded-md ${disabled ? "opacity-50" : "hover:outline-teal-500 focus:outline-2 focus:outline-teal-500"}`}
+        className={`outline outline-black/10 dark:outline-white/10 p-4 rounded-md ${disabled ? "opacity-50" : "hover:outline-teal-500 focus:outline-2 focus:outline-teal-500"}`}
       />
       {errors !== "s" && (
         <ul className="list-disc mt-3">

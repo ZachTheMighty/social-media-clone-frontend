@@ -67,7 +67,7 @@ function SidebarElement({ children, to, onClick }) {
   return (
     <Link
       to={to}
-      className="flex gap-2 p-4 hover:bg-gray-100/70 rounded-md"
+      className="flex gap-2 p-4 hover:bg-gray-100/70 hover:dark:bg-gray-700/30 active:bg-black/20 active:dark:bg-white/20 rounded-md"
       onClick={onClick}
     >
       {children}

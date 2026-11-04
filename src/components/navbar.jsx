@@ -22,26 +22,26 @@ export default function Navbar() {
         <div className="flex">
           <div
             onClick={toggleTheme}
-            className="p-[11px] hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full"
+            className="p-[11px] hover:bg-gray-200 dark:hover:bg-gray-700 active:dark:bg-gray-500  rounded-full"
           >
             {theme === "light" ? <Moon size={19} /> : <Sun size={19} />}
           </div>
           <Link
             to="/posts/new"
-            className="p-[11px] hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full"
+            className="p-[11px] hover:bg-gray-200 dark:hover:bg-gray-700 active:dark:bg-gray-500 rounded-full"
           >
             <SquarePlus size={19} />
           </Link>
           <Link
             to="/notifications"
-            className="p-[11px] hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full"
+            className="p-[11px] hover:bg-gray-200 dark:hover:bg-gray-700 active:dark:bg-gray-500 rounded-full"
           >
             <Bell size={19} />
           </Link>
         </div>
         <Link
           to="/profile"
-          className="rounded-full p-1 hover:bg-gray-200 dark:hover:bg-gray-700"
+          className="rounded-full p-1 hover:bg-gray-200 active:dark:bg-gray-500 dark:hover:bg-gray-700"
         >
           <img
             src={user.picture}
