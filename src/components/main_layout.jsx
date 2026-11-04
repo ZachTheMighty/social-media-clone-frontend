@@ -9,7 +9,7 @@ export default function MainLayout({ children }) {
         <Navbar />
         <div className="flex-1 flex">
           <Sidebar />
-          {children}
+          <div className="flex-1">{children}</div>
         </div>
       </div>
     </SidebarProvider>

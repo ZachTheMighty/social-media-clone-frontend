@@ -51,7 +51,7 @@ export default function Sidebar() {
 
   return (
     <div
-      className={`flex flex-col gap-1 w-70 p-4 pr-6 pb-0 border-r border-r-black/20 dark:border-r-white/20 relative ${!isTabletOrMobile && "transition-transform duration-300 ease-in-out "} ${isCollapsed ? "-translate-x-full " : "translate-x-0"}`}
+      className={`flex flex-col gap-1 w-70 p-4 pr-6 pb-0 border-r border-r-black/20 dark:border-r-white/20 ${isCollapsed ? "absolute -translate-x-full" : "relative translate-x-0"}`}
     >
       {elements.map((element, index) => (
         <SidebarElement key={index} to={element.to} onClick={element.onClick}>
