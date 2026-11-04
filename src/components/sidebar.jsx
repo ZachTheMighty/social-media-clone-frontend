@@ -1,12 +1,11 @@
-import { useEffect, useState } from "react";
-import { LogOut, Menu, Search, UserRoundCheck } from "lucide-react";
+import { LogOut, Search, UserRoundCheck } from "lucide-react";
 import { Link } from "react-router";
 import { useAuth } from "../contexts/auth_context";
-import { useMediaQuery } from "react-responsive";
+import { useSidebar } from "../contexts/sidebar_context";
+import HamburgerMenu from "./hamburger_menu";
 
 export default function Sidebar() {
-  const isTabletOrMobile = useMediaQuery({ maxWidth: 968 });
-  const [isCollapsed, setIsCollapsed] = useState(isTabletOrMobile);
+  const { isCollapsed, isTabletOrMobile } = useSidebar();
   const { setIsAuth } = useAuth();
   const elements = [
     {
@@ -50,25 +49,16 @@ export default function Sidebar() {
     },
   ];
 
-  useEffect(() => {
-    setIsCollapsed(isTabletOrMobile);
-  }, [isTabletOrMobile]);
-
   return (
     <div
-      className={`flex flex-col gap-1 w-70 p-4 pb-0 border-r border-r-black/20 dark:border-r-white/20 relative ${isCollapsed ? "-translate-x-full" : ""}`}
+      className={`flex flex-col gap-1 w-70 p-4 pr-6 pb-0 border-r border-r-black/20 dark:border-r-white/20 relative ${isCollapsed ? "-translate-x-full" : ""}`}
     >
       {elements.map((element, index) => (
         <SidebarElement key={index} to={element.to} onClick={element.onClick}>
           {element.jsx}
         </SidebarElement>
       ))}
-      <div
-        onClick={() => setIsCollapsed((prevIsCollapsed) => !prevIsCollapsed)}
-        className="border border-black/60 hover:border-black dark:border-white/20 rounded-full p-2 w-fit shadow-sm absolute -right-[18px] bg-white active:bg-gray-200"
-      >
-        <Menu size={17} />
-      </div>
+      {!isTabletOrMobile && <HamburgerMenu location="sidebar" />}
     </div>
   );
 }

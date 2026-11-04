@@ -2,16 +2,22 @@ import { SquarePlus, Bell, Moon, Sun } from "lucide-react";
 import { useAuth } from "../contexts/auth_context.jsx";
 import { Link } from "react-router";
 import { useTheme } from "../contexts/theme_context.jsx";
+import { useSidebar } from "../contexts/sidebar_context.jsx";
+import HamburgerMenu from "./hamburger_menu.jsx";
 
 export default function Navbar() {
   const { user } = useAuth();
   const { theme, toggleTheme } = useTheme();
+  const { isTabletOrMobile } = useSidebar();
 
   return (
     <div className="flex justify-between items-center px-4 py-2 border-b border-b-black/20 dark:border-b-white/20">
-      <Link to="/" className="text-2xl">
-        Logo
-      </Link>
+      <div className="flex items-center gap-2">
+        {isTabletOrMobile && <HamburgerMenu />}
+        <Link to="/" className="text-2xl">
+          Logo
+        </Link>
+      </div>
       <div className="flex justify-between items-center gap-2">
         <div className="flex">
           <div
