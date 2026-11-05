@@ -1,13 +1,12 @@
-import { SquarePlus, Bell, Moon, Sun } from "lucide-react";
+import { SquarePlus, Bell } from "lucide-react";
 import { useAuth } from "../contexts/auth_context.jsx";
 import { Link } from "react-router";
-import { useTheme } from "../contexts/theme_context.jsx";
 import { useSidebar } from "../contexts/sidebar_context.jsx";
 import HamburgerMenu from "./hamburger_menu.jsx";
+import ThemeSwitch from "./theme_swtich.jsx";
 
 export default function Navbar() {
   const { user } = useAuth();
-  const { theme, toggleTheme } = useTheme();
   const { isTabletOrMobile } = useSidebar();
 
   return (
@@ -20,10 +19,7 @@ export default function Navbar() {
       </div>
       <div className="flex justify-between items-center gap-2">
         <div className="flex">
-          <NavbarElement onClick={toggleTheme}>
-            {theme === "light" ? <Moon size={19} /> : <Sun size={19} />}
-          </NavbarElement>
-
+          <ThemeSwitch />
           <NavbarElement to="posts/new">
             <SquarePlus size={19} />
           </NavbarElement>
