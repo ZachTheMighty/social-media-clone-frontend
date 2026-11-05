@@ -84,7 +84,12 @@ export default function SignUp() {
               if (input[0] === "gender")
                 return (
                   <div key={index}>
-                    Gender
+                    <div className="flex">
+                      <div>Gender</div>
+                      {formData.gender === "" && (
+                        <div className="text-red-500">*</div>
+                      )}
+                    </div>
                     <Select
                       key={index}
                       options={["male", "female"]}

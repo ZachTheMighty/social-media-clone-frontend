@@ -38,7 +38,6 @@ export default function PostForm() {
           formData={formData}
           setFormData={setFormData}
           errors={errors}
-          required={true}
         />
         <Editor formData={formData} setFormData={setFormData} />
         <button className="self-end bg-black rounded-full px-4 py-3 text-white font-bold mt-2 hover:opacity-90 dark:bg-white dark:text-black active:opacity-100">

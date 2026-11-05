@@ -9,6 +9,7 @@ export default function Input({
   setFormData,
   errors,
   disabled,
+  required = true,
 }) {
   const [showPassword, setShowPassword] = useState(false);
   return (
@@ -31,7 +32,12 @@ export default function Input({
         ""
       )}
 
-      <label htmlFor={text}>{deCamel(text)}</label>
+      <label htmlFor={text} className="flex">
+        <div>{deCamel(text)}</div>
+        {required && formData[text].length === 0 && (
+          <div className="text-red-500">*</div>
+        )}
+      </label>
       <input
         type={type === "password" && !showPassword ? "password" : "text"}
         name={text}

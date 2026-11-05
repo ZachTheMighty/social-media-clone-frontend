@@ -8,7 +8,14 @@ export default function BirthDate({ formData, setFormData, errors }) {
       ?.days ?? 31;
   return (
     <div>
-      Day of Birth
+      <div className="flex">
+        <div>Day of Birth</div>
+        {(formData.birthDate.month === "" ||
+          formData.birthDate.day === "" ||
+          formData.birthDate.year === "") && (
+          <div className="text-red-500">*</div>
+        )}
+      </div>
       <div className="flex gap-2 mt-2">
         <Select
           options={birthDates.map((birthDate) => birthDate.month)}
