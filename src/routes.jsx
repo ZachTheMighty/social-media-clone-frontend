@@ -5,6 +5,7 @@ import GuestsRoute from "./components/guests_route.jsx";
 import Dashboard from "./components/dashboard.jsx";
 import ProtectedRoute from "./components/protected_route.jsx";
 import NotFound from "./components/not_found.jsx";
+import PostForm from "./components/post_form.jsx";
 
 export default [
   {
@@ -29,6 +30,10 @@ export default [
           {
             path: "/",
             element: <Dashboard />,
+          },
+          {
+            path: "posts/new",
+            element: <PostForm />,
           },
         ],
       },
