@@ -1,6 +1,7 @@
 import { Navigate, Outlet } from "react-router";
 import { useAuth } from "../contexts/auth_context.jsx";
 import MainLayout from "./main_layout.jsx";
+import { SidebarProvider } from "../contexts/sidebar_context.jsx";
 
 export default function ProtectedRoute() {
   const { isAuth, isLoading } = useAuth();
@@ -9,8 +10,10 @@ export default function ProtectedRoute() {
   if (!isAuth) return <Navigate to="/login" replace={true} />;
 
   return (
-    <MainLayout>
-      <Outlet />
-    </MainLayout>
+    <SidebarProvider>
+      <MainLayout>
+        <Outlet />
+      </MainLayout>
+    </SidebarProvider>
   );
 }
