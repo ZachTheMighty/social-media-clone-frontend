@@ -26,8 +26,8 @@ export default function PostForm() {
   };
 
   return (
-    <div className="flex flex-col items-center pt-8">
-      <div>Create post</div>
+    <div className="pt-8 max-w-2xl mx-auto px-4 sm:px-0">
+      <div className="text-center">Create post</div>
       <form
         onSubmit={(event) => handleSubmit(event)}
         className="flex-1 flex flex-col"
@@ -39,6 +39,7 @@ export default function PostForm() {
           setFormData={setFormData}
           errors={errors}
         />
+        <div className="mb-1">Body text</div>
         <Editor formData={formData} setFormData={setFormData} />
         <button className="self-end bg-black rounded-full px-4 py-3 text-white font-bold mt-2 hover:opacity-90 dark:bg-white dark:text-black active:opacity-100">
           Post
