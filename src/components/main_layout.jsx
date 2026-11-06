@@ -28,7 +28,7 @@ export default function MainLayout({ children }) {
                 onClick={() =>
                   setIsCollapsed((prevIsCollapsed) => !prevIsCollapsed)
                 }
-                className="absolute w-full top-0 min-h-screen z-9 bg-black/60"
+                className="absolute w-full top-0 h-full z-9 bg-black/60"
               ></div>
             )}
           </motion.div>
