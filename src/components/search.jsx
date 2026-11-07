@@ -27,7 +27,7 @@ export default function Seearch() {
             {users.map((user) => (
               <Link
                 to={`/profile/${user.username}`}
-                className="flex items-center gap-3 hover:bg-gray-100 active:bg-gray-200 rounded-md px-4 py-2"
+                className="flex items-center gap-3 hover:bg-gray-100 active:bg-gray-200 dark:hover:bg-white/10 dark:active:bg-white/20 rounded-md px-4 py-2"
               >
                 <img
                   src={user.picture}
