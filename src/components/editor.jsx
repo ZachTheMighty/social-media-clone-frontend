@@ -10,7 +10,7 @@ export default function Edditor({ formData, setFormData }) {
     <Editor
       key={theme}
       licenseKey="gpl"
-      tinymceScriptSrc="/public/tinymce/tinymce.min.js"
+      tinymceScriptSrc="/tinymce/tinymce.min.js"
       onInit={(evt, editor) => (editorRef.current = editor)}
       initialValue="<p>Type post body...</p>"
       onChange={() =>
