@@ -7,7 +7,7 @@ export default function MainLayout({ children }) {
   const { isCollapsed, setIsCollapsed, isTabletOrMobile } = useSidebar();
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="max-h-screen overflow-hidden flex flex-col">
       <Navbar />
       <div className="flex-1 flex relative">
         <LayoutGroup>
