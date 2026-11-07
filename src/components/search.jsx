@@ -23,7 +23,7 @@ export default function Seearch() {
       ) : (
         <div className="mt-8">
           <div className="font-bold text-xl mb-4 mx-4">All users</div>
-          <div className="max-h-130 sm:max-h-160 overflow-scroll">
+          <div className="max-h-120 sm:max-h-180 overflow-scroll">
             {users.map((user) => (
               <Link
                 to={`/profile/${user.username}`}
