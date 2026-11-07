@@ -13,7 +13,7 @@ export default function Option({
     <div
       onClick={() => {
         setIsChecked();
-        formData[initValue] === ""
+        typeof formData[initValue] === "string"
           ? setFormData({ ...formData, [initValue]: option })
           : setFormData({
               ...formData,
