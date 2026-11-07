@@ -9,12 +9,9 @@ export default function Edditor({ formData, setFormData }) {
   return (
     <Editor
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
       key={theme}
 =======
 <<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
       apiKey="j7ci5llrcl5p5j0kl0u0muegyom0ms7izxibbb6red174mb3"
 =======
