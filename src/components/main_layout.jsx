@@ -20,7 +20,7 @@ export default function MainLayout({ children }) {
                 ease: "easeInOut",
               },
             }}
-            className="flex-1"
+            className="flex-1 max-h-screen overflow-scroll"
           >
             {children}
             {isTabletOrMobile && !isCollapsed && (
