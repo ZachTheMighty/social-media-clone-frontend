@@ -8,8 +8,17 @@ export default function Edditor({ formData, setFormData }) {
 
   return (
     <Editor
+<<<<<<< Updated upstream
       key={theme}
+=======
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
       apiKey="j7ci5llrcl5p5j0kl0u0muegyom0ms7izxibbb6red174mb3"
+=======
+      key={theme}
+      licenseKey="gpl"
+      tinymceScriptSrc="/public/tinymce/tinymce.min.js"
+>>>>>>> Stashed changes
       onInit={(evt, editor) => (editorRef.current = editor)}
       initialValue="<p>Type post body...</p>"
       onChange={() =>
