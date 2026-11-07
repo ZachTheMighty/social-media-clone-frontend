@@ -6,6 +6,7 @@ import Dashboard from "./components/dashboard.jsx";
 import ProtectedRoute from "./components/protected_route.jsx";
 import NotFound from "./components/not_found.jsx";
 import PostForm from "./components/post_form.jsx";
+import Search from "./components/search.jsx";
 
 export default [
   {
@@ -34,6 +35,10 @@ export default [
           {
             path: "posts/new",
             element: <PostForm />,
+          },
+          {
+            path: "search",
+            element: <Search />,
           },
         ],
       },

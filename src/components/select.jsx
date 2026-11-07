@@ -55,17 +55,16 @@ export default function Select({
           </div>
         )}
       </div>
-      {errors !== "s" && (
+      {Array.isArray(errors) && (
         <ul className="list-disc mt-3">
-          {errors?.status === 422 &&
-            errors.errors.map((error, index) => {
-              if (error.path === initValue)
-                return (
-                  <li key={index} className="text-red-500 font-bold text-xs">
-                    {error.msg}
-                  </li>
-                );
-            })}
+          {errors.map((error, index) => {
+            if (error.path === initValue)
+              return (
+                <li key={index} className="text-red-500 font-bold text-xs">
+                  {error.msg}
+                </li>
+              );
+          })}
         </ul>
       )}
     </div>

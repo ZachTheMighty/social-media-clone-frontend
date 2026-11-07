@@ -16,9 +16,10 @@ export default function SignUp() {
     email: "",
     password: "",
     confirmPassword: "",
+    username: "",
   });
   const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState("s");
+  const [errors, setErrors] = useState(null);
 
   useEffect(() => {
     fetch(defaultProfile)
@@ -44,6 +45,7 @@ export default function SignUp() {
     dataToSend.append("email", formData.email);
     dataToSend.append("password", formData.password);
     dataToSend.append("confirmPassword", formData.confirmPassword);
+    dataToSend.append("username", formData.username);
 
     dataToSend.append("file", formData.photo.file);
 
@@ -54,8 +56,7 @@ export default function SignUp() {
 
     const data = await response.json();
     setLoading(false);
-    if (!response.ok)
-      return setErrors({ errors: data.errors, status: response.status });
+    if (!response.ok) return setErrors(data.errors);
     setErrors(null);
   };
 
@@ -140,9 +141,9 @@ export default function SignUp() {
           <button className="flex justify-center items-center h-14 bg-purple-900 text-white w-full py-3 rounded-md font-bold text-lg hover:bg-purple-700 active:bg-purple-900 mb-4 mt-8">
             {loading ? <LoadingSpinner /> : "Sign Up"}
           </button>
-          {errors?.status === 409 ? (
-            <div>
-              {errors.errors} Would you like to <Link to="/login">Sign in</Link>
+          {typeof errors === "string" ? (
+            <div className="text-sm">
+              {errors} Would you like to <Link to="/login">Sign in </Link>
               instead?
             </div>
           ) : !errors ? (

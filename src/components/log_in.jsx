@@ -5,10 +5,10 @@ import { useAuth } from "../contexts/auth_context.jsx";
 
 export default function Login() {
   const [formData, setFormData] = useState({
-    email: "",
+    identifier: "",
     password: "",
   });
-  const [errors, setErrors] = useState("s");
+  const [errors, setErrors] = useState(null);
 
   const { setIsAuth } = useAuth();
 
@@ -22,12 +22,7 @@ export default function Login() {
     });
 
     const data = await response.json();
-    if (!response.ok)
-      return setErrors({
-        errors: data.errors,
-        path: data.path,
-        status: response.status,
-      });
+    if (!response.ok) return setErrors(data.errors);
     localStorage.setItem("token", data.token);
     setIsAuth("");
   };
@@ -39,9 +34,9 @@ export default function Login() {
           Login
         </div>
         <form onSubmit={(event) => handleSubmit(event)}>
-          {errors.status === 401 && (
-            <div className="bg-[#bd0808] text-white p-4 pr-8 mb-4">
-              {errors.errors}
+          {typeof errors === "string" && (
+            <div className="bg-[#bd0808] text-white p-4 pr-8 mb-4 text-center">
+              {errors}
             </div>
           )}
           {Object.entries(formData).map((input, index) => (
