@@ -33,7 +33,7 @@ export default function Input({
       )}
 
       <label htmlFor={text} className="flex">
-        <div>{deCamel(text)}</div>
+        <div>{deCamel(text === "identifier" ? "Email or username" : text)}</div>
         {required && formData[text].length === 0 && (
           <div className="text-red-500">*</div>
         )}
@@ -42,7 +42,9 @@ export default function Input({
         type={type === "password" && !showPassword ? "password" : "text"}
         name={text}
         id={text}
-        placeholder={deCamel(text)}
+        placeholder={deCamel(
+          text === "identifier" ? "Email or username" : text,
+        )}
         value={formData[text]}
         onChange={(event) =>
           setFormData({ ...formData, [text]: event.target.value })
@@ -50,17 +52,16 @@ export default function Input({
         disabled={disabled}
         className={`outline outline-black/10 dark:outline-white/10 p-4 rounded-md ${disabled ? "opacity-50" : "hover:outline-teal-500 focus:outline-2 focus:outline-teal-500"}`}
       />
-      {errors !== "s" && (
+      {Array.isArray(errors) && (
         <ul className="list-disc mt-3">
-          {errors?.status === 422 &&
-            errors.errors.map((error, index) => {
-              if (error.path === text)
-                return (
-                  <li key={index} className="text-red-500 font-bold text-xs">
-                    {error.msg}
-                  </li>
-                );
-            })}
+          {errors.map((error, index) => {
+            if (error.path === text)
+              return (
+                <li key={index} className="text-red-500 font-bold text-xs">
+                  {error.msg}
+                </li>
+              );
+          })}
         </ul>
       )}
     </div>
