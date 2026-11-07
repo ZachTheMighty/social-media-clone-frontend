@@ -15,7 +15,7 @@ export default function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const response = await fetch("http://localhost:8080/tokens", {
+    const response = await fetch("tokens", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),

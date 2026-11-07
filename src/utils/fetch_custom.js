@@ -1,11 +1,11 @@
 export default async function fetchCustom(
-  url,
+  endpoint,
   protectedRoute = false,
   method = "get",
   body,
   contentType = "application/json",
 ) {
-  return await fetch(url, {
+  return await fetch(`http://localhost:8080/${endpoint}`, {
     method,
     headers: {
       "Content-Type": contentType,
