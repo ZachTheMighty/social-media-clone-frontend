@@ -28,7 +28,7 @@ export default function Navbar() {
             <Bell size={19} />
           </NavbarElement>
         </div>
-        <NavbarElement to="profile">
+        <NavbarElement to={`profile/${user.username}`}>
           <img
             src={user.picture}
             alt="Profile picture"
@@ -45,7 +45,7 @@ function NavbarElement({ children, to = location, onClick = "" }) {
     <Link
       to={to}
       onClick={onClick}
-      className={`${to === "profile" ? "p-1" : "p-[11px]"} hover:bg-gray-200 dark:hover:bg-gray-700 active:dark:bg-gray-500 rounded-full`}
+      className={`${to.includes("profile") ? "p-1" : "p-[11px]"} hover:bg-gray-200 dark:hover:bg-gray-700 active:dark:bg-gray-500 rounded-full`}
     >
       {children}
     </Link>
