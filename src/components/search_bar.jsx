@@ -1,7 +1,7 @@
 import { Search, CircleX } from "lucide-react";
 import { useTheme } from "../contexts/theme_context";
 
-export default function SearchBar({ search, setSearch }) {
+export default function SearchBar({ query, setQuery }) {
   const { theme } = useTheme();
   return (
     <div className="flex justify-between items-center bg-gray-100 dark:bg-[#25292e] rounded-full px-4">
@@ -10,12 +10,12 @@ export default function SearchBar({ search, setSearch }) {
         <input
           className="flex-1 focus:outline-0 px-4 pl-0 py-3"
           placeholder="Search people..."
-          value={search}
-          onChange={(event) => setSearch(event.target.value)}
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
         />
       </div>
       <CircleX
-        onClick={() => setSearch("")}
+        onClick={() => setQuery("")}
         stroke={`${theme === "light" ? "#eceef0" : "#25292e"}`}
         size={20}
         className="fill-current text-[#c7c7c7] hover:text-gray-500 active:text-[#c7c7c7]"
