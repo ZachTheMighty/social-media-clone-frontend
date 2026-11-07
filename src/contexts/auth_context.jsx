@@ -9,7 +9,7 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetchCustom("http://localhost:8080/tokens/auth", true)
+    fetchCustom("tokens/auth", true)
       .then((response) => response.json())
       .then((data) => {
         setIsAuth(data.isAuth);

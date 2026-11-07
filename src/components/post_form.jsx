@@ -14,7 +14,7 @@ export default function PostForm() {
     event.preventDefault();
 
     const response = await fetchCustom(
-      "http://localhost:8080/posts",
+      "posts",
       true,
       "post",
       JSON.stringify(formData),

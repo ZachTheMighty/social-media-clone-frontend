@@ -9,7 +9,7 @@ export default function Seearch() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetchCustom("http://localhost:8080/users", true)
+    fetchCustom("users", true)
       .then((response) => response.json())
       .then((data) => setUsers(data))
       .finally(() => setIsLoading(false));
