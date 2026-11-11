@@ -60,7 +60,14 @@ export default function Sidebar() {
       className={`flex flex-col gap-1 w-70 p-4 pr-6 pb-0 border-r border-r-black/20 dark:border-r-white/20 ${isCollapsed ? "absolute h-full -translate-x-full" : "translate-x-0"} ${isTabletOrMobile && "absolute h-full z-10 bg-white dark:bg-[#0e1113]"} `}
     >
       {elements.map((element, index) => (
-        <SidebarElement key={index} to={element.to} onClick={element.onClick}>
+        <SidebarElement
+          key={index}
+          to={element.to}
+          onClick={() => {
+            element.onClick;
+            isTabletOrMobile && setIsCollapsed(!isCollapsed);
+          }}
+        >
           {element.jsx}
         </SidebarElement>
       ))}
@@ -74,10 +81,7 @@ function SidebarElement({ children, to, onClick }) {
     <Link
       to={to}
       className="flex gap-2 p-4 hover:bg-gray-100/70 hover:dark:bg-gray-700/30 active:bg-black/20 active:dark:bg-white/20 rounded-md"
-      onClick={() => {
-        onClick;
-        isTabletOrMobile && setIsCollapsed(!isCollapsed);
-      }}
+      onClick={onClick}
     >
       {children}
     </Link>
