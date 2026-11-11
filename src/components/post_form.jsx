@@ -20,8 +20,7 @@ export default function PostForm() {
       JSON.stringify(formData),
     );
     const data = await response.json();
-    if (!response.ok)
-      return setErrors({ status: response.status, errors: data.errors });
+    if (!response.ok) return setErrors(data.errors);
     setErrors(null);
   };
 
@@ -41,9 +40,18 @@ export default function PostForm() {
         />
         <div className="mb-1">Body text</div>
         <Editor formData={formData} setFormData={setFormData} />
-        <button className="self-end bg-black rounded-full px-4 py-3 text-white font-bold mt-2 hover:opacity-90 dark:bg-white dark:text-black active:opacity-100">
-          Post
-        </button>
+        <div
+          className={`flex ${!errors ? "justify-between" : "justify-end"} items-center`}
+        >
+          {!errors && (
+            <div className="text-green-500 font-bold">
+              Successfully created post!
+            </div>
+          )}
+          <button className="bg-black rounded-full px-4 py-3 text-white font-bold mt-2 hover:opacity-90 dark:bg-white dark:text-black active:opacity-100">
+            Post
+          </button>
+        </div>
       </form>
     </div>
   );
