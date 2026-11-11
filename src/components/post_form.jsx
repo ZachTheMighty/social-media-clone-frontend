@@ -20,8 +20,7 @@ export default function PostForm() {
       JSON.stringify(formData),
     );
     const data = await response.json();
-    if (!response.ok)
-      return setErrors({ status: response.status, errors: data.errors });
+    if (!response.ok) return setErrors(data.errors);
     setErrors(null);
   };
 
