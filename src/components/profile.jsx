@@ -15,7 +15,7 @@ export default function Profile() {
           <div className="text-sm">{user.firstName + " " + user.lastName}</div>
           <div className="flex gap-5 mt-2 text-sm">
             <Numbers name="posts" numbers={user.posts} />
-            <Numbers name="followers" numbers={user.followedBy} />
+            <Numbers name="followers" numbers={user.followers} />
             <Numbers name="following" numbers={user.following} />
           </div>
         </div>
