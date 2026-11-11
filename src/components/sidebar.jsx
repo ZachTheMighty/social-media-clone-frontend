@@ -6,7 +6,7 @@ import HamburgerMenu from "./hamburger_menu";
 import { motion } from "motion/react";
 
 export default function Sidebar() {
-  const { isCollapsed, isTabletOrMobile } = useSidebar();
+  const { isCollapsed, setIsCollapsed, isTabletOrMobile } = useSidebar();
   const { setIsAuth } = useAuth();
   const elements = [
     {
@@ -74,7 +74,10 @@ function SidebarElement({ children, to, onClick }) {
     <Link
       to={to}
       className="flex gap-2 p-4 hover:bg-gray-100/70 hover:dark:bg-gray-700/30 active:bg-black/20 active:dark:bg-white/20 rounded-md"
-      onClick={onClick}
+      onClick={() => {
+        onClick;
+        isTabletOrMobile && setIsCollapsed(!isCollapsed);
+      }}
     >
       {children}
     </Link>
