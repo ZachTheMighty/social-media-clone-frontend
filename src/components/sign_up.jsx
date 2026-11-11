@@ -19,7 +19,7 @@ export default function SignUp() {
     username: "",
   });
   const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState(null);
+  const [errors, setErrors] = useState(1);
 
   useEffect(() => {
     fetch(defaultProfile)
