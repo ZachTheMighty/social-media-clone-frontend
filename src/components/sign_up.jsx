@@ -49,7 +49,7 @@ export default function SignUp() {
 
     dataToSend.append("file", formData.photo.file);
 
-    const response = await fetch("users", {
+    const response = await fetch("http://localhost:8080/users", {
       method: "post",
       body: dataToSend,
     });
