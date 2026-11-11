@@ -2,6 +2,7 @@ import { useState } from "react";
 import Input from "./input.jsx";
 import { Link } from "react-router";
 import { useAuth } from "../contexts/auth_context.jsx";
+import fetchCustom from "../utils/fetch_custom.js";
 
 export default function Login() {
   const [formData, setFormData] = useState({
@@ -15,11 +16,12 @@ export default function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const response = await fetch("tokens", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    });
+    const response = await fetchCustom(
+      "tokens",
+      false,
+      "post",
+      JSON.stringify(formData),
+    );
 
     const data = await response.json();
     if (!response.ok) return setErrors(data.errors);
