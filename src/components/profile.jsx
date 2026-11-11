@@ -1,7 +1,16 @@
+import { useParams } from "react-router";
+import { useUsers } from "../contexts/users_context";
 import { useAuth } from "../contexts/auth_context";
 
 export default function Profile() {
-  const { user } = useAuth();
+  const { username } = useParams();
+  const { users } = useUsers();
+  const { loggedInUser } = useAuth();
+
+  const user =
+    loggedInUser.username === username
+      ? loggedInUser
+      : users.find((user) => user.username === username);
 
   return (
     <div className="pt-8 max-w-xl mx-auto px-4 sm:px-0">
@@ -20,9 +29,15 @@ export default function Profile() {
           </div>
         </div>
       </div>
-      <button className="bg-[#4a5df9] text-white w-full py-3 hover:bg-[#4150f7] active:bg-[#4a5df9] active:scale-x-98 rounded-xl mt-8 font-bold text-sm">
-        Follow
-      </button>
+      {user === loggedInUser ? (
+        <button className="bg-gray-100 w-full py-3 font-bold text-sm mt-8 rounded-xl hover:bg-gray-200 active:scale-x-98 transition-transform">
+          Edit profile
+        </button>
+      ) : (
+        <button className="bg-[#4a5df9] text-white w-full py-3 hover:bg-[#4150f7] active:scale-x-98 rounded-xl mt-8 font-bold text-sm transition-transform">
+          Follow
+        </button>
+      )}
     </div>
   );
 }
