@@ -7,7 +7,7 @@ export default function MainLayout({ children }) {
   const { isCollapsed, setIsCollapsed, isTabletOrMobile } = useSidebar();
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="max-h-screen overflow-hidden flex flex-col">
       <Navbar />
       <div className="flex-1 flex relative">
         <LayoutGroup>
@@ -20,7 +20,7 @@ export default function MainLayout({ children }) {
                 ease: "easeInOut",
               },
             }}
-            className="flex-1 max-h-screen overflow-scroll"
+            className="flex-1 h-screen overflow-scroll"
           >
             {children}
             {isTabletOrMobile && !isCollapsed && (

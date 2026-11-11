@@ -6,7 +6,7 @@ import HamburgerMenu from "./hamburger_menu.jsx";
 import ThemeSwitch from "./theme_swtich.jsx";
 
 export default function Navbar() {
-  const { user } = useAuth();
+  const { loggedInUser } = useAuth();
   const { isTabletOrMobile } = useSidebar();
 
   return (
@@ -28,9 +28,9 @@ export default function Navbar() {
             <Bell size={19} />
           </NavbarElement>
         </div>
-        <NavbarElement to="profile">
+        <NavbarElement to={`profile/${loggedInUser.username}`}>
           <img
-            src={user.picture}
+            src={loggedInUser.picture}
             alt="Profile picture"
             className="w-8 h-8 rounded-full object-cover"
           />
@@ -45,7 +45,7 @@ function NavbarElement({ children, to = location, onClick = "" }) {
     <Link
       to={to}
       onClick={onClick}
-      className={`${to === "profile" ? "p-1" : "p-[11px]"} hover:bg-gray-200 dark:hover:bg-gray-700 active:dark:bg-gray-500 rounded-full`}
+      className={`${to.includes("profile") ? "p-1" : "p-[11px]"} hover:bg-gray-200 dark:hover:bg-gray-700 active:dark:bg-gray-500 rounded-full`}
     >
       {children}
     </Link>

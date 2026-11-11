@@ -19,7 +19,7 @@ export function AuthProvider({ children }) {
   }, [isAuth]);
 
   return (
-    <AuthContext value={{ isAuth, setIsAuth, isLoading, user }}>
+    <AuthContext value={{ isAuth, setIsAuth, isLoading, loggedInUser: user }}>
       {children}
     </AuthContext>
   );

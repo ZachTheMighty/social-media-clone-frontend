@@ -7,6 +7,7 @@ import ProtectedRoute from "./components/protected_route.jsx";
 import NotFound from "./components/not_found.jsx";
 import PostForm from "./components/post_form.jsx";
 import Search from "./components/search.jsx";
+import Profile from "./components/profile.jsx";
 
 export default [
   {
@@ -39,6 +40,10 @@ export default [
           {
             path: "search",
             element: <Search />,
+          },
+          {
+            path: "profile/:username",
+            element: <Profile />,
           },
         ],
       },
