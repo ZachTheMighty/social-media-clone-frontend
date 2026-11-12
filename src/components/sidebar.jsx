@@ -1,4 +1,4 @@
-import { LogOut, Search, UserRoundCheck } from "lucide-react";
+import { LogOut, Search, UserRoundCheck, Mail } from "lucide-react";
 import { Link } from "react-router";
 import { useAuth } from "../contexts/auth_context";
 import { useSidebar } from "../contexts/sidebar_context";
@@ -17,6 +17,15 @@ export default function Sidebar() {
         </>
       ),
       to: "search",
+    },
+    {
+      jsx: (
+        <>
+          <Mail />
+          <div>Requests</div>
+        </>
+      ),
+      to: "requests",
     },
     {
       jsx: (
