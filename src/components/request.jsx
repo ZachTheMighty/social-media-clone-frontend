@@ -4,7 +4,7 @@ export default function Request({ user, children }) {
   return (
     <Link
       to={`/profile/${user.username}`}
-      className="flex-1 flex flex-col gap-2 sm:gap-0 mr-4 sm:mx-8 sm:flex-row sm:justify-between sm:items-center mb-4 hover:bg-gray-100 active:bg-gray-200 dark:hover:bg-white/10 dark:active:bg-white/20 rounded-md px-4 py-2"
+      className="flex-1 flex flex-col gap-2 sm:gap-0 mx-4 sm:mx-8 sm:flex-row sm:justify-between sm:items-center mb-4 hover:bg-gray-100 active:bg-gray-200 dark:hover:bg-white/10 dark:active:bg-white/20 rounded-md px-4 py-2"
     >
       <div className="flex gap-2 items-center">
         <img
