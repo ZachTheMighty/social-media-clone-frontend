@@ -73,7 +73,7 @@ export default function Sidebar() {
           key={index}
           to={element.to}
           onClick={() => {
-            element.onClick;
+            element.onClick && element.onClick();
             isTabletOrMobile && setIsCollapsed(!isCollapsed);
           }}
         >
