@@ -66,7 +66,7 @@ export default function Profile() {
       ) : request ? (
         <button
           onClick={cancelFollowRequest}
-          className="bg-gray-100 w-full py-3 font-bold text-sm mt-8 rounded-xl hover:bg-gray-200 active:scale-x-98 transition-transform"
+          className="bg-gray-100 dark:bg-white/10 w-full py-3 font-bold text-sm mt-8 rounded-xl hover:bg-gray-200 hover:dark:bg-white/20 active:scale-x-98 transition-transform"
         >
           Cancel request
         </button>
