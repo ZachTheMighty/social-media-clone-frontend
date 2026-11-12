@@ -5,9 +5,11 @@ import { useUsers } from "../contexts/users_context";
 
 export default function Search() {
   const [query, setQuery] = useState("");
-  const { users } = useUsers();
+  const { users, isLoading } = useUsers();
 
   const loweredQuery = query.toLowerCase().trim();
+
+  if (isLoading) return;
 
   const filteredUsers = users.filter((user) =>
     `
