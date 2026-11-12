@@ -2,17 +2,14 @@ import { useParams } from "react-router";
 import { useUsers } from "../contexts/users_context";
 import { useAuth } from "../contexts/auth_context";
 import fetchCustom from "../utils/fetch_custom";
-import { useState } from "react";
 
 export default function Profile() {
   const { username } = useParams();
   const { users } = useUsers();
-  const { loggedInUser } = useAuth();
+  const { loggedInUser, setUser } = useAuth();
 
-  const [request, setRequest] = useState(() =>
-    loggedInUser.sentRequests.find(
-      (request) => request.receiver.username === username,
-    ),
+  const request = loggedInUser.sentRequests.find(
+    (request) => request.receiver.username === username,
   );
 
   const user =
@@ -23,13 +20,26 @@ export default function Profile() {
   const sendFollowRequest = () => {
     fetchCustom(`requests/${username}`, true, "post")
       .then((response) => response.json())
-      .then((request) => setRequest(request));
+      .then((request) =>
+        setUser({
+          ...loggedInUser,
+          sentRequests: [...loggedInUser.sentRequests, request],
+        }),
+      );
   };
 
   const cancelFollowRequest = () => {
     fetchCustom(`requests/${request.id}`, true, "delete")
       .then((response) => response.json())
-      .then((request) => setRequest(null));
+      .then((request) => {
+        const array = loggedInUser.sentRequests.filter(
+          (req) => req.id !== request.id,
+        );
+        setUser({
+          ...loggedInUser,
+          sentRequests: array,
+        });
+      });
   };
 
   return (
