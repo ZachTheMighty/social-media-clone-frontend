@@ -14,9 +14,7 @@ export function UsersProvider({ children }) {
       .finally(() => setIsLoading(false));
   }, []);
 
-  if (isLoading) return;
-
-  return <UsersContext value={{ users }}>{children}</UsersContext>;
+  return <UsersContext value={{ users, isLoading }}>{children}</UsersContext>;
 }
 
 export function useUsers() {
