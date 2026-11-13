@@ -44,17 +44,12 @@ export default [
             element: <Search />,
           },
           {
-            path: "profile",
-            children: [
-              {
-                path: "edit",
-                element: <EditProfile />,
-              },
-              {
-                path: ":username",
-                element: <Profile />,
-              },
-            ],
+            path: "profile/:username",
+            element: <Profile />,
+          },
+          {
+            path: "account/edit",
+            element: <EditProfile />,
           },
           {
             path: "requests",
