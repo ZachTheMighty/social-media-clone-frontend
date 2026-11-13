@@ -32,6 +32,7 @@ export default function EditProfile() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (loading) return;
 
     setErrors(1);
     setLoading(true);
