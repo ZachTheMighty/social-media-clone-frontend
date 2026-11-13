@@ -51,6 +51,8 @@ export default function Profile() {
       });
   };
 
+  const unFollow = () => {};
+
   return (
     <div className="pt-8 max-w-xl mx-auto px-4 sm:px-0">
       <div className="flex items-center gap-6">
@@ -79,10 +81,10 @@ export default function Profile() {
         >
           Cancel request
         </button>
-      ) : request?.status === "ACCEPTED" ? (
+      ) : loggedInUser.following.find((u) => u.username === username) ? (
         <button
-          onClick={sendFollowRequest}
-          className="bg-[#4a5df9] text-white w-full py-3 hover:bg-[#4150f7] active:scale-x-98 rounded-xl mt-8 font-bold text-sm transition-transform"
+          onClick={unFollow}
+          className="bg-gray-100 dark:bg-white/10 w-full py-3 font-bold text-sm mt-8 rounded-xl hover:bg-gray-200 hover:dark:bg-white/20 active:scale-x-98 transition-transform"
         >
           Unfollow
         </button>
