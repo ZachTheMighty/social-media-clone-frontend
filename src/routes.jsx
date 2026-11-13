@@ -9,6 +9,7 @@ import PostForm from "./components/post_form.jsx";
 import Search from "./components/search.jsx";
 import Profile from "./components/profile.jsx";
 import Requests from "./components/requests.jsx";
+import EditProfile from "./components/edit_profile.jsx";
 
 export default [
   {
@@ -43,8 +44,17 @@ export default [
             element: <Search />,
           },
           {
-            path: "profile/:username",
-            element: <Profile />,
+            path: "profile",
+            children: [
+              {
+                path: "edit",
+                element: <EditProfile />,
+              },
+              {
+                path: ":username",
+                element: <Profile />,
+              },
+            ],
           },
           {
             path: "requests",

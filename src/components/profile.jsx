@@ -2,6 +2,7 @@ import { useParams } from "react-router";
 import { useUsers } from "../contexts/users_context";
 import { useAuth } from "../contexts/auth_context";
 import fetchCustom from "../utils/fetch_custom";
+import { Link } from "react-router";
 
 export default function Profile() {
   const { username } = useParams();
@@ -75,9 +76,12 @@ export default function Profile() {
         </div>
       </div>
       {user === loggedInUser ? (
-        <button className="bg-gray-100 w-full py-3 font-bold text-sm mt-8 rounded-xl hover:bg-gray-200 active:scale-x-98 transition-transform">
+        <Link
+          to="/profile/edit"
+          className="bg-gray-100 w-full py-3 font-bold text-sm mt-8 rounded-xl hover:bg-gray-200 active:scale-x-98 transition-transform inline-block text-center"
+        >
           Edit profile
-        </button>
+        </Link>
       ) : request?.status === "PENDING" ? (
         <button
           onClick={cancelFollowRequest}
