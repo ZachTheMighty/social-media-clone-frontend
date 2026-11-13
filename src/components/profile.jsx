@@ -77,7 +77,7 @@ export default function Profile() {
       </div>
       {user === loggedInUser ? (
         <Link
-          to="/profile/edit"
+          to="/account/edit"
           className="bg-gray-100 w-full py-3 font-bold text-sm mt-8 rounded-xl hover:bg-gray-200 active:scale-x-98 transition-transform inline-block text-center"
         >
           Edit profile
