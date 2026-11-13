@@ -3,6 +3,7 @@ import { useUsers } from "../contexts/users_context";
 import { useAuth } from "../contexts/auth_context";
 import fetchCustom from "../utils/fetch_custom";
 import { Link } from "react-router";
+import NotFound from "./not_found";
 
 export default function Profile() {
   const { username } = useParams();
@@ -19,6 +20,8 @@ export default function Profile() {
     loggedInUser.username === username
       ? loggedInUser
       : users.find((user) => user.username === username);
+
+  if (!user) return <NotFound />;
 
   const sendFollowRequest = () => {
     fetchCustom(`requests/${username}`, true, "post")
