@@ -5,11 +5,13 @@ import fetchCustom from "../utils/fetch_custom";
 
 export default function Profile() {
   const { username } = useParams();
-  const { users } = useUsers();
+  const { users, isLoading } = useUsers();
   const { loggedInUser, setUser } = useAuth();
 
+  if (isLoading) return;
+
   const request = loggedInUser.sentRequests.find(
-    (request) => request.receiver.username === username,
+    (request) => request.receiver?.username === username,
   );
 
   const user =
@@ -20,12 +22,19 @@ export default function Profile() {
   const sendFollowRequest = () => {
     fetchCustom(`requests/${username}`, true, "post")
       .then((response) => response.json())
-      .then((request) =>
+      .then((request) => {
+        const array = loggedInUser.sentRequests.find(
+          (req) => req.id === request.id,
+        )
+          ? loggedInUser.sentRequests.map((req) =>
+              req.id === request.id ? request : req,
+            )
+          : [...loggedInUser.sentRequests, request];
         setUser({
           ...loggedInUser,
-          sentRequests: [...loggedInUser.sentRequests, request],
-        }),
-      );
+          sentRequests: array,
+        });
+      });
   };
 
   const cancelFollowRequest = () => {
@@ -63,12 +72,19 @@ export default function Profile() {
         <button className="bg-gray-100 w-full py-3 font-bold text-sm mt-8 rounded-xl hover:bg-gray-200 active:scale-x-98 transition-transform">
           Edit profile
         </button>
-      ) : request ? (
+      ) : request?.status === "PENDING" ? (
         <button
           onClick={cancelFollowRequest}
           className="bg-gray-100 dark:bg-white/10 w-full py-3 font-bold text-sm mt-8 rounded-xl hover:bg-gray-200 hover:dark:bg-white/20 active:scale-x-98 transition-transform"
         >
           Cancel request
+        </button>
+      ) : request?.status === "ACCEPTED" ? (
+        <button
+          onClick={sendFollowRequest}
+          className="bg-[#4a5df9] text-white w-full py-3 hover:bg-[#4150f7] active:scale-x-98 rounded-xl mt-8 font-bold text-sm transition-transform"
+        >
+          Unfollow
         </button>
       ) : (
         <button
