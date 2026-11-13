@@ -51,7 +51,11 @@ export default function Profile() {
       });
   };
 
-  const unFollow = () => {};
+  const unFollow = () => {
+    fetchCustom(`users/${username}`, true, "put")
+      .then((response) => response.json())
+      .then((updatedUser) => setUser(updatedUser));
+  };
 
   return (
     <div className="pt-8 max-w-xl mx-auto px-4 sm:px-0">
