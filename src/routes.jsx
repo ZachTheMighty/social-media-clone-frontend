@@ -8,6 +8,7 @@ import NotFound from "./components/not_found.jsx";
 import PostForm from "./components/post_form.jsx";
 import Search from "./components/search.jsx";
 import Profile from "./components/profile.jsx";
+import Requests from "./components/requests.jsx";
 
 export default [
   {
@@ -44,6 +45,10 @@ export default [
           {
             path: "profile/:username",
             element: <Profile />,
+          },
+          {
+            path: "requests",
+            element: <Requests />,
           },
         ],
       },
