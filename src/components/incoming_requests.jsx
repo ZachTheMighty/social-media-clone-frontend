@@ -5,14 +5,9 @@ import fetchCustom from "../utils/fetch_custom";
 export default function IncomingRequests() {
   const { loggedInUser, setUser } = useAuth();
 
-  const rejectRequest = (event, id) => {
+  const respondToRequest = (event, id, status) => {
     event.preventDefault();
-    fetchCustom(
-      `requests/${id}`,
-      true,
-      "put",
-      JSON.stringify({ status: "REJECTED" }),
-    )
+    fetchCustom(`requests/${id}`, true, "put", JSON.stringify({ status }))
       .then((response) => response.json())
       .then((request) => {
         const array = loggedInUser.receivedRequests.map((req) =>
@@ -40,11 +35,18 @@ export default function IncomingRequests() {
             .map((request) => (
               <Request key={request.id} user={request.sender}>
                 <div className="flex gap-1">
-                  <div className="bg-[#4a5df9] hover:bg-[#4150f7] font-bold px-4 py-2 rounded-md text-[10px] sm:text-base text-white">
+                  <div
+                    onClick={(event) =>
+                      respondToRequest(event, request.id, "ACCEPTED")
+                    }
+                    className="bg-[#4a5df9] hover:bg-[#4150f7] font-bold px-4 py-2 rounded-md text-[10px] sm:text-base text-white"
+                  >
                     ACCEPT
                   </div>
                   <div
-                    onClick={(event) => rejectRequest(event, request.id)}
+                    onClick={(event) =>
+                      respondToRequest(event, request.id, "REJECTED")
+                    }
                     className="bg-gray-100 dark:bg-white/10 hover:bg-gray-200 hover:dark:bg-white/20 font-bold px-4 py-2 rounded-md text-[10px] sm:text-base"
                   >
                     REJECT
