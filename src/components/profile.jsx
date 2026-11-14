@@ -4,11 +4,15 @@ import { useAuth } from "../contexts/auth_context";
 import fetchCustom from "../utils/fetch_custom";
 import { Link } from "react-router";
 import NotFound from "./not_found";
+import DialogBox from "./dialog_box";
+import { useRef, useState } from "react";
 
 export default function Profile() {
   const { username } = useParams();
   const { users, isLoading } = useUsers();
   const { loggedInUser, setUser } = useAuth();
+  const dialogRef = useRef(null);
+  const [content, setContent] = useState("");
 
   if (isLoading) return;
 
@@ -22,6 +26,11 @@ export default function Profile() {
       : users.find((user) => user.username === username);
 
   if (!user) return <NotFound />;
+
+  const openDialog = (content) => {
+    dialogRef.current.showModal();
+    setContent(content);
+  };
 
   const sendFollowRequest = () => {
     fetchCustom(`requests/${username}`, true, "post")
@@ -73,15 +82,25 @@ export default function Profile() {
           <div className="text-sm">{user.firstName + " " + user.lastName}</div>
           <div className="flex gap-5 mt-2 text-sm">
             <Numbers name="posts" numbers={user.posts} />
-            <Numbers name="followers" numbers={user.followers} />
-            <Numbers name="following" numbers={user.following} />
+            <Numbers
+              name="followers"
+              numbers={user.followers}
+              onClick={() => openDialog("followers")}
+            />
+            <Numbers
+              name="following"
+              numbers={user.following}
+              onClick={() => openDialog("following")}
+            />
+
+            <DialogBox content={content} dialogRef={dialogRef} />
           </div>
         </div>
       </div>
       {user === loggedInUser ? (
         <Link
           to="/account/edit"
-          className="bg-gray-100 w-full py-3 font-bold text-sm mt-8 rounded-xl hover:bg-gray-200 active:scale-x-98 transition-transform inline-block text-center"
+          className="bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 w-full py-3 font-bold text-sm mt-8 rounded-xl active:scale-x-98 transition-transform inline-block text-center"
         >
           Edit profile
         </Link>
@@ -111,9 +130,9 @@ export default function Profile() {
   );
 }
 
-function Numbers({ name, numbers }) {
+function Numbers({ name, numbers, onClick }) {
   return (
-    <div className="flex gap-1">
+    <div onClick={onClick} className="flex gap-1">
       <div className="font-bold">{numbers.length}</div>
       <div>{name}</div>
     </div>
