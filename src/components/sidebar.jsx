@@ -30,24 +30,6 @@ export default function Sidebar() {
     {
       jsx: (
         <>
-          <UserRoundCheck />
-          <div>Following</div>
-        </>
-      ),
-      to: "following",
-    },
-    {
-      jsx: (
-        <>
-          <UserRoundCheck />
-          <div>Followers</div>
-        </>
-      ),
-      to: "followers",
-    },
-    {
-      jsx: (
-        <>
           <LogOut />
           <div>Logout</div>
         </>
