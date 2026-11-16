@@ -17,14 +17,16 @@ export default function Request({ user, children, request }) {
           <div className="text-xs sm:text-sm max-w-30 sm:max-w-50 truncate">
             {user.firstName + " " + user.lastName}
           </div>
-          <div className="text-[10px] sm:text-xs text-black/50 dark:text-white/50 flex gap-2">
-            <div>Sent at {formatTime(request.updatedAt)}</div>
-            {request.status !== "PENDING" && (
-              <div>
-                {request.status} at {formatTime(request.updatedAt)}
-              </div>
-            )}
-          </div>
+          {children && (
+            <div className="text-[10px] sm:text-xs text-black/50 dark:text-white/50 flex gap-2">
+              <div>Sent at {formatTime(request.updatedAt)}</div>
+              {request.status !== "PENDING" && (
+                <div>
+                  {request.status} at {formatTime(request.updatedAt)}
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
       {children}
