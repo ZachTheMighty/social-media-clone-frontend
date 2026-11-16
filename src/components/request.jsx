@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import formatTime from "../utils/format_time";
+import { format } from "timeago.js";
 
 export default function Request({ user, children, request }) {
   return (
@@ -19,10 +19,10 @@ export default function Request({ user, children, request }) {
           </div>
           {children && (
             <div className="text-[10px] sm:text-xs text-black/50 dark:text-white/50 flex gap-2">
-              <div>Sent at {formatTime(request.updatedAt)}</div>
+              <div>Sent {format(request.updatedAt)}</div>
               {request.status !== "PENDING" && (
                 <div>
-                  {request.status} at {formatTime(request.updatedAt)}
+                  {request.status} {format(request.updatedAt)}
                 </div>
               )}
             </div>

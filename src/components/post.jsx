@@ -1,7 +1,7 @@
-import formatTime from "../utils/format_time.js";
 import { Link } from "react-router";
 import parse from "html-react-parser";
 import { ThumbsUp, ThumbsDown, MessageCircle } from "lucide-react";
+import { format } from "timeago.js";
 
 export default function Post({ post }) {
   return (
@@ -18,7 +18,7 @@ export default function Post({ post }) {
           <div>{post.author.username}</div>
         </Link>
         <div className="text-[#5C6C74] dark:text-[#8BA2AD]">
-          • {formatTime(post.createdAt)}
+          • {format(post.createdAt)}
         </div>
       </div>
       <div className="my-2 font-bold text-lg">{post.title}</div>
