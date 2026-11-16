@@ -33,7 +33,7 @@ export default function IncomingRequests() {
           loggedInUser.receivedRequests
             .filter((req) => req.status === "PENDING")
             .map((request) => (
-              <Request key={request.id} user={request.sender}>
+              <Request key={request.id} user={request.sender} request={request}>
                 <div className="flex gap-1">
                   <div
                     onClick={(event) =>

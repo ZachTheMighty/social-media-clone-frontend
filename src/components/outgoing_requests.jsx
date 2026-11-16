@@ -32,7 +32,7 @@ export default function OutgoingRequests() {
           </div>
         ) : (
           loggedInUser.sentRequests.map((request) => (
-            <Request key={request.id} user={request.receiver}>
+            <Request key={request.id} user={request.receiver} request={request}>
               <div
                 onClick={(event) => deleteRequest(event, request.id)}
                 className={`${request.status === "PENDING" ? "bg-amber-100 dark:bg-amber-700" : request.status === "REJECTED" ? "bg-red-500 text-white" : "bg-green-500 text-white"} font-bold px-4 py-2 rounded-md text-[10px] sm:text-base self-start sm:self-center`}
