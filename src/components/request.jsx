@@ -1,6 +1,7 @@
 import { Link } from "react-router";
+import formatTime from "../utils/format_time";
 
-export default function Request({ user, children }) {
+export default function Request({ user, children, request }) {
   return (
     <Link
       to={`/profile/${user.username}`}
@@ -15,6 +16,14 @@ export default function Request({ user, children }) {
           <div className="text-sm sm:text-xl font-bold">{user.username}</div>
           <div className="text-xs sm:text-sm max-w-30 sm:max-w-50 truncate">
             {user.firstName + " " + user.lastName}
+          </div>
+          <div className="text-[10px] sm:text-xs text-black/50 dark:text-white/50 flex gap-2">
+            <div>Sent at {formatTime(request.updatedAt)}</div>
+            {request.status !== "PENDING" && (
+              <div>
+                {request.status} at {formatTime(request.updatedAt)}
+              </div>
+            )}
           </div>
         </div>
       </div>
