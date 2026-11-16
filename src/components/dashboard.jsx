@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { useAuth } from "../contexts/auth_context";
 import Link from "./link.jsx";
 import Post from "./post.jsx";
@@ -23,12 +24,12 @@ export default function Dashboard() {
               new Date(postB.createdAt) - new Date(postA.createdAt),
           )
           .map((post, index) => (
-            <>
-              <Post key={post.id} post={post} />
+            <Fragment key={post.id}>
+              <Post post={post} />
               {index !== posts.length - 1 && (
                 <hr className="text-black/10 dark:text-white/10"></hr>
               )}
-            </>
+            </Fragment>
           ))
       )}
     </div>
