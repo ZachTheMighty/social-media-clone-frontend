@@ -36,7 +36,7 @@ export default function Post({ post }) {
           </div>
         </div>
 
-        <div className="bg-[#E5EBEE] dark:bg-[#2A3236] dark:hover:bg-[#333D42] flex items-center rounded-full font-bold text-xs px-3 py-2 gap-1">
+        <div className="bg-[#E5EBEE] hover:bg-[#DBE4E9] dark:bg-[#2A3236] dark:hover:bg-[#333D42] flex items-center rounded-full font-bold text-xs px-3 py-2 gap-1">
           <MessageCircle size={16} />
           {post.comments.length}
         </div>
