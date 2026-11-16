@@ -21,7 +21,7 @@ export default function Post({ post }) {
           • {format(post.createdAt)}
         </div>
       </div>
-      <div className="my-2 font-bold text-lg">{post.title}</div>
+      <div className="my-2 font-bold text-lg line-clamp-2">{post.title}</div>
       <div className="text-sm line-clamp-3 sm:line-clamp-6">
         {parse(post.content)}
       </div>
