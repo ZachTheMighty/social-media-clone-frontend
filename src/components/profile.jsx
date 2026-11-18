@@ -132,7 +132,10 @@ export default function Profile() {
 
 function Numbers({ name, numbers, onClick }) {
   return (
-    <div onClick={onClick} className="flex gap-1">
+    <div
+      onClick={onClick}
+      className={`flex gap-1 ${name !== "posts" && "cursor-pointer"}`}
+    >
       <div className="font-bold">{numbers.length}</div>
       <div>{name}</div>
     </div>
