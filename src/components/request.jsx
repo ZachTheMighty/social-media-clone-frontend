@@ -18,12 +18,15 @@ export default function Request({ user, children, request }) {
             {user.firstName + " " + user.lastName}
           </div>
           {children && (
-            <div className="text-[10px] sm:text-xs text-black/50 dark:text-white/50 flex gap-2">
+            <div className="text-[10px] text-black/50 dark:text-white/50 flex gap-2">
               <div>Sent {format(request.updatedAt)}</div>
               {request.status !== "PENDING" && (
-                <div>
-                  {request.status} {format(request.updatedAt)}
-                </div>
+                <>
+                  <div>•</div>
+                  <div>
+                    {request.status} {format(request.updatedAt)}
+                  </div>
+                </>
               )}
             </div>
           )}

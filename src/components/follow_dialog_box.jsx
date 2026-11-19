@@ -6,7 +6,7 @@ import { useParams } from "react-router";
 import { useUsers } from "../contexts/users_context";
 import { useAuth } from "../contexts/auth_context";
 
-export default function DialogBox({ content, dialogRef }) {
+export default function FollowDialogBox({ content, dialogRef }) {
   const [query, setQuery] = useState("");
   const { username } = useParams();
   const { loggedInUser } = useAuth();
