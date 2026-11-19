@@ -2,6 +2,8 @@ import fetchCustom from "../utils/fetch_custom.js";
 import Editor from "./editor.jsx";
 import Input from "./input.jsx";
 import { useState } from "react";
+import Link from "./link.jsx";
+import { useAuth } from "../contexts/auth_context.jsx";
 
 export default function PostForm() {
   const [formData, setFormData] = useState({
@@ -9,6 +11,7 @@ export default function PostForm() {
     content: "",
   });
   const [errors, setErrors] = useState("s");
+  const { loggedInUser, setUser } = useAuth();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -22,6 +25,7 @@ export default function PostForm() {
     const data = await response.json();
     if (!response.ok) return setErrors(data.errors);
     setErrors(null);
+    setUser({ ...loggedInUser, allPosts: [...loggedInUser.allPosts, data] });
   };
 
   return (
@@ -45,7 +49,7 @@ export default function PostForm() {
         >
           {!errors && (
             <div className="text-green-500 font-bold">
-              Successfully created post!
+              Successfully created post, <Link to="/">checkout it out!</Link>
             </div>
           )}
           <button className="bg-black rounded-full px-4 py-3 text-white font-bold mt-2 hover:opacity-90 dark:bg-white dark:text-black active:opacity-100">
