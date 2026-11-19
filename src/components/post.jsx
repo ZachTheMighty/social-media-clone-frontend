@@ -1,11 +1,15 @@
 import { Link } from "react-router";
 import parse from "html-react-parser";
-import { ThumbsUp, ThumbsDown, MessageCircle } from "lucide-react";
+import { ThumbsUp, ThumbsDown, MessageCircle, Trash } from "lucide-react";
 import { format } from "timeago.js";
 import fetchCustom from "../utils/fetch_custom";
 import { useAuth } from "../contexts/auth_context";
+import { useRef, useState } from "react";
+import ConfirmDialogBox from "./confirm_dialog_box";
 
 export default function Post({ post }) {
+  const [content, setContent] = useState("");
+  const dialogRef = useRef(null);
   const { loggedInUser, setUser } = useAuth();
   const vote = post.votes.find(
     (vote) =>
@@ -29,20 +33,39 @@ export default function Post({ post }) {
 
   return (
     <div className="sm:w-183 hover:bg-[#F6F8F9] dark:hover:bg-[#181C1F] rounded-2xl px-4 py-2 my-1 cursor-pointer">
-      <div className="flex items-center text-xs gap-1">
-        <Link
-          to={`/profile/${post.author.username}`}
-          className="font-bold text-[#333D42] dark:text-[#B7CAD4] hover:text-[#0A499B] dark:hover:text-[#90A9FD] flex items-center gap-1"
-        >
-          <img
-            src={post.author.picture}
-            className="w-6 h-6 rounded-full object-cover"
-          />
-          <div>{post.author.username}</div>
-        </Link>
-        <div className="text-[#5C6C74] dark:text-[#8BA2AD]">
-          • {format(post.createdAt)}
+      <div className="flex items-center justify-between text-xs gap-1">
+        <div className="flex items-center">
+          <Link
+            to={`/profile/${post.author.username}`}
+            className="font-bold text-[#333D42] dark:text-[#B7CAD4] hover:text-[#0A499B] dark:hover:text-[#90A9FD] flex items-center gap-1"
+          >
+            <img
+              src={post.author.picture}
+              className="w-6 h-6 rounded-full object-cover"
+            />
+            <div>{post.author.username}</div>
+          </Link>
+          <div className="text-[#5C6C74] dark:text-[#8BA2AD]">
+            • {format(post.createdAt)}
+          </div>
         </div>
+        {post.author.username === loggedInUser.username && (
+          <div>
+            <Trash
+              size={16}
+              className="hover:text-red-500 active:text-black"
+              onClick={() => {
+                dialogRef.current.showModal();
+                setContent("post");
+              }}
+            />
+            <ConfirmDialogBox
+              content={content}
+              dialogRef={dialogRef}
+              post={post}
+            />
+          </div>
+        )}
       </div>
       <div className="my-2 font-bold text-lg line-clamp-2">{post.title}</div>
       <div className="text-sm line-clamp-3 sm:line-clamp-6">
