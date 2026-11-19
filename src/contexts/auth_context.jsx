@@ -14,6 +14,16 @@ export function AuthProvider({ children }) {
       .then((data) => {
         setIsAuth(data.isAuth);
         setUser(data.user);
+        setUser((prevUser) => {
+          if (!prevUser) return;
+          return {
+            ...prevUser,
+            allPosts: [
+              ...prevUser.posts,
+              ...prevUser.following.map((user) => user.posts).flat(),
+            ],
+          };
+        });
       })
       .finally(() => setIsLoading(false));
   }, [isAuth]);
