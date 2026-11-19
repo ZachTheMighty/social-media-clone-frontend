@@ -4,7 +4,7 @@ import { useAuth } from "../contexts/auth_context";
 import fetchCustom from "../utils/fetch_custom";
 import { Link } from "react-router";
 import NotFound from "./not_found";
-import DialogBox from "./dialog_box";
+import FollowDialogBox from "./follow_dialog_box";
 import { useRef, useState } from "react";
 
 export default function Profile() {
@@ -93,7 +93,7 @@ export default function Profile() {
               onClick={() => openDialog("following")}
             />
 
-            <DialogBox content={content} dialogRef={dialogRef} />
+            <FollowDialogBox content={content} dialogRef={dialogRef} />
           </div>
         </div>
       </div>
