@@ -25,8 +25,11 @@ export default function ConfirmDialogBox({ content, dialogRef, post }) {
     >
       <div className="flex justify-between items-center">
         <div className="text-lg font-bold">Delete {content}?</div>
-        <div className="bg-gray-200 hover:bg-gray-300 active:bg-gray-200 rounded-full text-gray-500 p-1">
-          <X onClick={closeDialog} />
+        <div
+          onClick={closeDialog}
+          className="bg-gray-200 hover:bg-gray-300 active:bg-gray-200 rounded-full text-gray-500 p-1"
+        >
+          <X />
         </div>
       </div>
       <div className="text-[14px]">

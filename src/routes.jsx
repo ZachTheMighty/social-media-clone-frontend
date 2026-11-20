@@ -5,11 +5,12 @@ import GuestsRoute from "./components/guests_route.jsx";
 import Dashboard from "./components/dashboard.jsx";
 import ProtectedRoute from "./components/protected_route.jsx";
 import NotFound from "./components/not_found.jsx";
-import PostForm from "./components/post_form.jsx";
 import Search from "./components/search.jsx";
 import Profile from "./components/profile.jsx";
 import Requests from "./components/requests.jsx";
 import EditProfile from "./components/edit_profile.jsx";
+import CreatePost from "./components/create_post.jsx";
+import EditPost from "./components/edit_post.jsx";
 
 export default [
   {
@@ -37,7 +38,11 @@ export default [
           },
           {
             path: "posts/new",
-            element: <PostForm />,
+            element: <CreatePost />,
+          },
+          {
+            path: "posts/:postId/edit",
+            element: <EditPost />,
           },
           {
             path: "search",

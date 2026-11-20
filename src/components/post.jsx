@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import parse from "html-react-parser";
-import { ThumbsUp, ThumbsDown, MessageCircle, Trash } from "lucide-react";
+import { ThumbsUp, ThumbsDown, MessageCircle, Trash, Pen } from "lucide-react";
 import { format } from "timeago.js";
 import fetchCustom from "../utils/fetch_custom";
 import { useAuth } from "../contexts/auth_context";
@@ -34,7 +34,7 @@ export default function Post({ post }) {
   return (
     <div className="sm:w-183 hover:bg-[#F6F8F9] dark:hover:bg-[#181C1F] rounded-2xl px-4 py-2 my-1 cursor-pointer">
       <div className="flex items-center justify-between text-xs gap-1">
-        <div className="flex items-center">
+        <div className="flex items-center gap-1">
           <Link
             to={`/profile/${post.author.username}`}
             className="font-bold text-[#333D42] dark:text-[#B7CAD4] hover:text-[#0A499B] dark:hover:text-[#90A9FD] flex items-center gap-1"
@@ -45,12 +45,23 @@ export default function Post({ post }) {
             />
             <div>{post.author.username}</div>
           </Link>
+          <div>•</div>
           <div className="text-[#5C6C74] dark:text-[#8BA2AD]">
-            • {format(post.createdAt)}
+            {format(post.createdAt)}
+          </div>
+          <div>•</div>
+          <div className="text-[#5C6C74] dark:text-[#8BA2AD]">
+            Edited {format(post.updatedAt)}
           </div>
         </div>
         {post.author.username === loggedInUser.username && (
-          <div>
+          <div className="flex gap-2">
+            <Link to={`/posts/${post.id}/edit`}>
+              <Pen
+                size={16}
+                className="hover:text-[#6A5CFF] active:text-black"
+              />
+            </Link>
             <Trash
               size={16}
               className="hover:text-red-500 active:text-black"

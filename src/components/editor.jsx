@@ -12,11 +12,12 @@ export default function Edditor({ formData, setFormData }) {
       licenseKey="gpl"
       tinymceScriptSrc="/tinymce/tinymce.min.js"
       onInit={(evt, editor) => (editorRef.current = editor)}
-      initialValue="<p>Type post body...</p>"
+      initialValue={formData.content}
       onChange={() =>
         setFormData({ ...formData, content: editorRef.current.getContent() })
       }
       init={{
+        placeholder: "Type post body...",
         height: 500,
         menubar: false,
         plugins: [
