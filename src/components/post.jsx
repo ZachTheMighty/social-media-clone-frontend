@@ -15,7 +15,8 @@ export default function Post({ post }) {
     (vote) =>
       vote.postId === post.id && vote.user.username === loggedInUser.username,
   );
-  const handleVote = (state) => {
+  const handleVote = (event, state) => {
+    event.preventDefault();
     fetchCustom(`posts/${post.id}/votes/${state}`, true, "post")
       .then((response) => response.json())
       .then((updatedPost) =>
@@ -32,7 +33,10 @@ export default function Post({ post }) {
   const downVoted = post.votes.filter((vote) => vote.state === "DOWN").length;
 
   return (
-    <div className="sm:w-183 hover:bg-[#F6F8F9] dark:hover:bg-[#181C1F] rounded-2xl px-4 py-2 my-1 cursor-pointer">
+    <Link
+      to={`/posts/${post.id}`}
+      className="inline-block sm:w-183 hover:bg-[#F6F8F9] dark:hover:bg-[#181C1F] rounded-2xl px-4 py-2 my-1 cursor-pointer"
+    >
       <div className="flex items-center justify-between text-xs gap-1">
         <div className="flex items-center gap-1">
           <Link
@@ -65,7 +69,8 @@ export default function Post({ post }) {
             <Trash
               size={16}
               className="hover:text-red-500 active:text-black"
-              onClick={() => {
+              onClick={(event) => {
+                event.preventDefault();
                 dialogRef.current.showModal();
                 setContent("post");
               }}
@@ -87,7 +92,7 @@ export default function Post({ post }) {
           className={`flex items-center rounded-full font-bold text-xs ${vote?.state === "UP" ? "bg-[#D93900] text-white" : vote?.state === "DOWN" ? "bg-[#6A5CFF] text-white" : "bg-[#E5EBEE] dark:bg-[#2A3236]"}`}
         >
           <div
-            onClick={() => handleVote("UP")}
+            onClick={(event) => handleVote(event, "UP")}
             className={`p-2 rounded-full ${vote?.state === "UP" ? "hover:bg-[#AE2C00]" : vote?.state === "DOWN" ? "hover:bg-[#523DFF]" : "hover:text-[#FF4500] hover:bg-[#DBE4E9] dark:hover:bg-[#333D42] "}`}
           >
             <ThumbsUp
@@ -97,7 +102,7 @@ export default function Post({ post }) {
           </div>
           <div className="cursor-text">{upVoted - downVoted}</div>
           <div
-            onClick={() => handleVote("DOWN")}
+            onClick={(event) => handleVote(event, "DOWN")}
             className={`p-2 rounded-full ${vote?.state === "DOWN" ? "hover:bg-[#523DFF]" : vote?.state === "UP" ? "hover:bg-[#AE2C00]" : "hover:text-[#6A5CFF] hover:bg-[#DBE4E9] dark:hover:bg-[#333D42] "}`}
           >
             <ThumbsDown
@@ -112,6 +117,6 @@ export default function Post({ post }) {
           {post.comments.length}
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
