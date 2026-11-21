@@ -11,6 +11,7 @@ import Requests from "./components/requests.jsx";
 import EditProfile from "./components/edit_profile.jsx";
 import CreatePost from "./components/create_post.jsx";
 import EditPost from "./components/edit_post.jsx";
+import FullPost from "./components/full_post.jsx";
 
 export default [
   {
@@ -39,6 +40,10 @@ export default [
           {
             path: "posts/new",
             element: <CreatePost />,
+          },
+          {
+            path: "posts/:postId",
+            element: <FullPost />,
           },
           {
             path: "posts/:postId/edit",
