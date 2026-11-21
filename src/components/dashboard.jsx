@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { useAuth } from "../contexts/auth_context";
 import Link from "./link.jsx";
-import Post from "./post.jsx";
+import PostCard from "./post_card.jsx";
 
 export default function Dashboard() {
   const { loggedInUser } = useAuth();
@@ -21,7 +21,7 @@ export default function Dashboard() {
           )
           .map((post, index) => (
             <Fragment key={post.id}>
-              <Post post={post} />
+              <PostCard post={post} />
               {index !== loggedInUser.allPosts?.length - 1 && (
                 <hr className="text-black/10 dark:text-white/10"></hr>
               )}
