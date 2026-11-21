@@ -2,7 +2,12 @@ import { useRef } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { useTheme } from "../contexts/theme_context";
 
-export default function Edditor({ formData, setFormData }) {
+export default function Edditor({
+  formData,
+  setFormData,
+  placeholder,
+  height,
+}) {
   const editorRef = useRef(null);
   const { theme } = useTheme();
 
@@ -12,13 +17,18 @@ export default function Edditor({ formData, setFormData }) {
       licenseKey="gpl"
       tinymceScriptSrc="/tinymce/tinymce.min.js"
       onInit={(evt, editor) => (editorRef.current = editor)}
-      initialValue={formData.content}
-      onChange={() =>
-        setFormData({ ...formData, content: editorRef.current.getContent() })
-      }
+      initialValue={formData.content ?? formData}
+      onChange={() => {
+        formData.content
+          ? setFormData({
+              ...formData,
+              content: editorRef.current.getContent(),
+            })
+          : setFormData(editorRef.current.getContent());
+      }}
       init={{
-        placeholder: "Type post body...",
-        height: 500,
+        placeholder,
+        height,
         menubar: false,
         plugins: [
           "advlist",

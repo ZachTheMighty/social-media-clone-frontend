@@ -25,7 +25,12 @@ export default function PostForm({
           errors={errors}
         />
         <div className="mb-1">Body text</div>
-        <Editor formData={formData} setFormData={setFormData} />
+        <Editor
+          formData={formData}
+          setFormData={setFormData}
+          placeholder="Type post body..."
+          height={500}
+        />
         <div
           className={`flex ${!errors ? "justify-between" : "justify-end"} items-center`}
         >
