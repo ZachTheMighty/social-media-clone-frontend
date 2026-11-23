@@ -3,7 +3,7 @@ import { useAuth } from "../contexts/auth_context.jsx";
 import fetchCustom from "../utils/fetch_custom.js";
 import Editor from "./editor.jsx";
 
-export default function CommentForm({ post }) {
+export default function CommentForm({ postId }) {
   const { loggedInUser, setUser } = useAuth();
   const [comment, setComment] = useState("");
   const [errors, setErrors] = useState(null);
@@ -12,10 +12,10 @@ export default function CommentForm({ post }) {
     event.preventDefault();
 
     const response = await fetchCustom(
-      `posts/${post.id}/comments`,
+      "comments",
       true,
       "post",
-      JSON.stringify({ comment }),
+      JSON.stringify({ comment, postId }),
     );
 
     const data = await response.json();
@@ -25,10 +25,11 @@ export default function CommentForm({ post }) {
       ...loggedInUser,
       allPosts: loggedInUser.allPosts.map((p) => (p.id === data.id ? data : p)),
     });
+    setComment("");
   };
 
   return (
-    <form onSubmit={(event) => handleSubmit(event)}>
+    <form className="mb-8" onSubmit={(event) => handleSubmit(event)}>
       <Editor
         formData={comment}
         setFormData={setComment}

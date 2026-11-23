@@ -19,7 +19,7 @@ export default function Edditor({
       onInit={(evt, editor) => (editorRef.current = editor)}
       initialValue={formData.content ?? formData}
       onChange={() => {
-        formData.content
+        formData.content !== undefined
           ? setFormData({
               ...formData,
               content: editorRef.current.getContent(),
