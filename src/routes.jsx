@@ -10,7 +10,6 @@ import Profile from "./components/profile.jsx";
 import Requests from "./components/requests.jsx";
 import EditProfile from "./components/edit_profile.jsx";
 import CreatePost from "./components/create_post.jsx";
-import EditPost from "./components/edit_post.jsx";
 import FullPost from "./components/full_post.jsx";
 
 export default [
@@ -44,10 +43,6 @@ export default [
           {
             path: "posts/:postId",
             element: <FullPost />,
-          },
-          {
-            path: "posts/:postId/edit",
-            element: <EditPost />,
           },
           {
             path: "search",
