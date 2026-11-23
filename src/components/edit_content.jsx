@@ -3,7 +3,7 @@ import { useAuth } from "../contexts/auth_context";
 import fetchCustom from "../utils/fetch_custom";
 import Editor from "./editor";
 
-export default function EditComment({ content, contentName, setIsEditable }) {
+export default function EditContent({ content, contentName, setIsEditable }) {
   const { loggedInUser, setUser } = useAuth();
   const [c, setC] = useState(content);
 
