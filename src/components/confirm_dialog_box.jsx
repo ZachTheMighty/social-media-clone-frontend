@@ -1,23 +1,8 @@
 import { X } from "lucide-react";
-import fetchCustom from "../utils/fetch_custom";
-import { useAuth } from "../contexts/auth_context";
-export default function ConfirmDialogBox({ content, dialogRef, post }) {
-  const { loggedInUser, setUser } = useAuth();
+export default function ConfirmDialogBox({ content, dialogRef, deleteFn }) {
   const closeDialog = (event) => {
     event.stopPropagation();
     dialogRef.current.close();
-  };
-
-  const deletePost = (event) => {
-    fetchCustom(`posts/${post.id}`, true, "delete")
-      .then((response) => response.json())
-      .then((data) =>
-        setUser({
-          ...loggedInUser,
-          allPosts: loggedInUser.allPosts.filter((p) => p.id !== data.id),
-        }),
-      );
-    closeDialog(event);
   };
 
   return (
@@ -31,7 +16,7 @@ export default function ConfirmDialogBox({ content, dialogRef, post }) {
         <div className="text-lg font-bold">Delete {content}?</div>
         <div
           onClick={(event) => closeDialog(event)}
-          className="bg-gray-200 hover:bg-gray-300 active:bg-gray-200 rounded-full text-gray-500 p-1"
+          className="bg-gray-200 hover:bg-gray-300 active:bg-gray-200 rounded-full text-gray-500 p-1 cursor-pointer"
         >
           <X />
         </div>
@@ -42,13 +27,16 @@ export default function ConfirmDialogBox({ content, dialogRef, post }) {
       <div className="flex justify-end gap-2 mt-8 text-[14px] font-bold">
         <div
           onClick={(event) => closeDialog(event)}
-          className="rounded-full bg-gray-200 hover:bg-gray-300 active:bg-gray-200 rounded-full p-2"
+          className="rounded-full bg-gray-200 hover:bg-gray-300 active:bg-gray-200 rounded-full p-2 cursor-pointer"
         >
           Cancel
         </div>
         <div
-          onClick={(event) => deletePost(event)}
-          className="rounded-full bg-red-600 hover:bg-red-700 active:bg-red-600 text-white p-2"
+          onClick={(event) => {
+            deleteFn();
+            closeDialog(event);
+          }}
+          className="rounded-full bg-red-600 hover:bg-red-700 active:bg-red-600 text-white p-2 cursor-pointer"
         >
           Delete
         </div>
