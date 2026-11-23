@@ -130,48 +130,50 @@ export default function ContentTemplate({ content, full = false }) {
           {content.title}
         </div>
       )}
-      <div
-        className={`text-sm ${!full && content.title && "line-clamp-3 sm:line-clamp-6"}`}
-      >
-        {isEditable ? (
-          <EditContent
-            content={content}
-            contentName={contentName}
-            setIsEditable={setIsEditable}
-          />
-        ) : (
-          <div className="my-4">{parse(content.content)}</div>
-        )}
-      </div>
-      <div className="pt-2 flex gap-2">
-        <div
-          className={`flex items-center rounded-full font-bold text-xs ${vote?.state === "UP" ? "bg-[#D93900] text-white" : vote?.state === "DOWN" ? "bg-[#6A5CFF] text-white" : "bg-[#E5EBEE] dark:bg-[#2A3236]"} cursor-pointer`}
-        >
+      {isEditable ? (
+        <EditContent
+          content={content}
+          contentName={contentName}
+          setIsEditable={setIsEditable}
+        />
+      ) : (
+        <>
           <div
-            onClick={(event) => handleVote(event, "UP")}
-            className={`p-2 rounded-full ${vote?.state === "UP" ? "hover:bg-[#AE2C00]" : vote?.state === "DOWN" ? "hover:bg-[#523DFF]" : "hover:text-[#FF4500] hover:bg-[#DBE4E9] dark:hover:bg-[#333D42] "}`}
+            className={`text-sm ${!full && content.title && "line-clamp-3 sm:line-clamp-6"}`}
           >
-            <ThumbsUp
-              size={16}
-              className={`${vote?.state === "UP" && "fill-white"}`}
-            />
+            <div className="my-4">{parse(content.content)}</div>
           </div>
-          <div className="cursor-text">{upVoted - downVoted}</div>
-          <div
-            onClick={(event) => handleVote(event, "DOWN")}
-            className={`p-2 rounded-full ${vote?.state === "DOWN" ? "hover:bg-[#523DFF]" : vote?.state === "UP" ? "hover:bg-[#AE2C00]" : "hover:text-[#6A5CFF] hover:bg-[#DBE4E9] dark:hover:bg-[#333D42] "}`}
-          >
-            <ThumbsDown
-              size={16}
-              className={`${vote?.state === "DOWN" && "fill-white"}`}
-            />
+          <div className="pt-2 flex gap-2">
+            <div
+              className={`flex items-center rounded-full font-bold text-xs ${vote?.state === "UP" ? "bg-[#D93900] text-white" : vote?.state === "DOWN" ? "bg-[#6A5CFF] text-white" : "bg-[#E5EBEE] dark:bg-[#2A3236]"} cursor-pointer`}
+            >
+              <div
+                onClick={(event) => handleVote(event, "UP")}
+                className={`p-2 rounded-full ${vote?.state === "UP" ? "hover:bg-[#AE2C00]" : vote?.state === "DOWN" ? "hover:bg-[#523DFF]" : "hover:text-[#FF4500] hover:bg-[#DBE4E9] dark:hover:bg-[#333D42] "}`}
+              >
+                <ThumbsUp
+                  size={16}
+                  className={`${vote?.state === "UP" && "fill-white"}`}
+                />
+              </div>
+              <div className="cursor-text">{upVoted - downVoted}</div>
+              <div
+                onClick={(event) => handleVote(event, "DOWN")}
+                className={`p-2 rounded-full ${vote?.state === "DOWN" ? "hover:bg-[#523DFF]" : vote?.state === "UP" ? "hover:bg-[#AE2C00]" : "hover:text-[#6A5CFF] hover:bg-[#DBE4E9] dark:hover:bg-[#333D42] "}`}
+              >
+                <ThumbsDown
+                  size={16}
+                  className={`${vote?.state === "DOWN" && "fill-white"}`}
+                />
+              </div>
+            </div>
+            <div className="bg-[#E5EBEE] hover:bg-[#DBE4E9] dark:bg-[#2A3236] dark:hover:bg-[#333D42] flex items-center rounded-full font-bold text-xs px-3 py-2 gap-1 cursor-pointer">
+              <MessageCircle size={16} />
+              {content.title ? content.comments.length : "Reply"}
+            </div>
           </div>
-        </div>
-        <div className="bg-[#E5EBEE] hover:bg-[#DBE4E9] dark:bg-[#2A3236] dark:hover:bg-[#333D42] flex items-center rounded-full font-bold text-xs px-3 py-2 gap-1 cursor-pointer">
-          <MessageCircle size={16} />
-          {content.title ? content.comments.length : "Reply"}
-        </div>
-      </div>
+        </>
+      )}
     </div>
   );
 }

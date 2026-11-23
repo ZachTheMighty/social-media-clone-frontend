@@ -35,7 +35,7 @@ export default function EditContent({ content, contentName, setIsEditable }) {
         placeholder={`Edit ${contentName}...`}
         height={content.title ? 500 : 200}
       />
-      <div className="flex justify-end gap-2 font-bold mt-2">
+      <div className="flex justify-end gap-2 font-bold mt-2 text-sm">
         <div
           onClick={(event) => {
             event.stopPropagation();
